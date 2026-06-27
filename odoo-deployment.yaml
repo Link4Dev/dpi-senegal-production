@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: odoo
+  namespace: dpi-senegal
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: odoo
+  template:
+    metadata:
+      labels:
+        app: odoo
+    spec:
+      containers:
+        - name: odoo
+          image: odoo:16.0
+          ports:
+            - containerPort: 8069
+          env:
+            - name: HOST
+              value: postgres
