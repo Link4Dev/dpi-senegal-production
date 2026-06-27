@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: dpi-ingress
+  namespace: dpi-senegal
+spec:
+  rules:
+    - host: dpi.senegal.gov
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: odoo
+                port:
+                  number: 8069
